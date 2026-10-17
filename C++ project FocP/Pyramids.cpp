@@ -133,5 +133,5 @@ void Pyramid4()		// Pascal's Triangle
 
 void k()
 { 
-	Pyramid3();
+	Pyramid4();
 }
