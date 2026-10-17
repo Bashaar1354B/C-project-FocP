@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 void Pyramid1()		//Simple pyramid of "*"
 {
@@ -66,22 +67,71 @@ void Pyramid3()		//Simple pyramind connected to an inverted pyramid at the botto
 		cout << endl;
 	}
 }
-void Pyramid4()		//Incomplete
+void Pyramid4()		// Pascal's Triangle
 {
-	int row;
+	int row, num1, num2, index;
+	string CurrLine, PrevLine, num = "", temp;
+	bool check1 = false, check2 = false;
 	cout << "Enter the number of rows of the pyramid: ";
 	cin >> row;
 	for (int i = 0; i < row; i++)
 	{
-		for (int n = row - i - 1; n >= 0; n--)
+		check1 = false;
+		check2 = false;
+		num = "";
+		CurrLine = "";
+		CurrLine += "1 ";
+		if (i > 1)
 		{
-			cout << " ";
+			for (int m = 0; m < PrevLine.length(); m++)
+			{
+				temp = string(1, PrevLine[m]);
+				if (check1 == false)
+				{
+					if (temp == " ")
+					{
+						num1 = stoi(num);
+						num = "";
+						check1 = true;
+					}
+					else
+					{
+						num += temp;
+					}
+				}
+				else
+				{
+					if (temp == " ")
+					{
+						num2 = stoi(num);
+						num = "";
+						check2 = true;
+					}
+					else
+					{
+						num += temp;
+					}
+				}
+				if (check1 && check2)
+				{
+					index = num1 + num2;
+					CurrLine += to_string(index) + " ";
+					num1 = num2;
+					num = "";
+					check2 = false;
+				}
+			}
 		}
-
+		if (i > 0)
+		{
+			CurrLine += "1 ";
+		}
+		PrevLine = CurrLine;
+		cout << CurrLine << endl;
 	}
 }
 
-void main()
+void k()
 { 
 	Pyramid3();
 }
